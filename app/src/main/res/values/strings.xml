@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TODO List</string>
+    <string name="action_settings">Settings</string>
+    <string name="item_name">Task text</string>
+    <string name="edit_error">Needs text</string>
+    <string name="no_data">Nothing yet</string>
+    <string name="archived">Archived</string>
+    <string name="restored">Restored</string>
+    <string name="removed">Removed</string>
+    <string name="archive">ARCHIVE</string>
+    <string name="active">ACTIVE</string>
+</resources>
