@@ -10,11 +10,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
@@ -72,7 +72,7 @@ public class ItemsActivity extends AppCompatActivity implements IItemsView, IAct
 
         mInfoText = (TextView) findViewById(R.id.info);
         mTitleText = (TextView) findViewById(R.id.title);
-        CheckBox check = (CheckBox) findViewById(R.id.lists_switch);
+        SwitchCompat check = (SwitchCompat) findViewById(R.id.lists_switch);
         mAddButton = (FloatingActionButton) findViewById(R.id.fab);
         mView = (RecyclerView) findViewById(R.id.items_list);
 

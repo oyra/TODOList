@@ -22,11 +22,20 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:typeface">sans</item>
+        <!--<item name="android:fontFamily">sans-serif-light</item>-->
+        <item name="android:fontFamily">sans-serif-thin</item>
     </style>
 
     <style name="text_normal">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/text_medium</item>
         <item name="android:typeface">sans</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="text_small_dark">
+        <item name="android:textColor">@color/colorAdditionalB</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:fontFamily">sans-serif</item>
     </style>
 </resources>
