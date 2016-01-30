@@ -1,4 +1,4 @@
-package com.example;
+package com.oyra;
 
 import de.greenrobot.daogenerator.DaoGenerator;
 import de.greenrobot.daogenerator.Entity;

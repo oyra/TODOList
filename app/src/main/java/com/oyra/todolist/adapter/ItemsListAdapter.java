@@ -98,7 +98,7 @@ public class ItemsListAdapter extends RecyclerView.Adapter<ItemsListAdapter.View
     public Item getItemAt(int pos) {
         return (mShowComplete ? mListComplete.get(pos) : mListIncomplete.get(pos));
     }
-
+    
     public void updateItemAt(int position, Item newItem) {
 
         //if the completion status changed

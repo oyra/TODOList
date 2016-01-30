@@ -39,6 +39,10 @@ public class ItemsActivity extends AppCompatActivity implements IItemsView, IAct
     //the default is showing active (incomplete) tasks
     private final boolean mShowCompleteTasksByDefault = false;
 
+    private final int ACTION_RESTORE = 40000;
+    private final int ACTION_REMOVE = 40001;
+    private final int ACTION_ARCHIVE = 40002;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,18 +126,19 @@ public class ItemsActivity extends AppCompatActivity implements IItemsView, IAct
                     if (swipeDir == ItemTouchHelper.LEFT || swipeDir == ItemTouchHelper.START) {
                         //make incomplete
                         switchCompletionStatus(item, viewHolder.getAdapterPosition());
-                        showConfirmation(R.string.restored);
+                        showConfirmation(ACTION_RESTORE, item, viewHolder.getAdapterPosition());
                     } else {
                         //remove
                         remove(item, viewHolder.getAdapterPosition());
-                        showConfirmation(R.string.removed);
+                        showConfirmation(ACTION_REMOVE, item, viewHolder.getAdapterPosition());
 
                     }
                     return;
                 }
                 switchCompletionStatus(item, viewHolder.getAdapterPosition());
-                showConfirmation(R.string.archived);
+                showConfirmation(ACTION_ARCHIVE, item, viewHolder.getAdapterPosition());
             }
+
 
             private void switchCompletionStatus(Item item, int position) {
                 item.setIsComplete(!item.getIsComplete());
@@ -200,19 +205,56 @@ public class ItemsActivity extends AppCompatActivity implements IItemsView, IAct
         mTitleText.setText(mAdapter.isShowComplete() ? R.string.archive : R.string.active);
     }
 
-    private void showConfirmation(int textToShow) {
+    private void showConfirmation(final int action, final Item item, final int position) {
+        int textToShow;
+        switch (action) {
+            case ACTION_ARCHIVE:
+                textToShow = R.string.archived;
+                break;
+            case ACTION_REMOVE:
+                textToShow = R.string.removed;
+                break;
+            case ACTION_RESTORE:
+                textToShow = R.string.restored;
+                break;
+            default:
+                textToShow = R.string.edit_error;
+        }
         Snackbar.make(mView, textToShow, Snackbar.LENGTH_LONG)
+                .setAction(R.string.undo, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        switch (action) {
+                            case ACTION_ARCHIVE:
+                                mPresenter.removeItem(item, 0);
+                                item.setIsComplete(!item.getIsComplete());
+                                mPresenter.addItem(item);
+                                break;
+                            case ACTION_REMOVE:
+                                mPresenter.addItem(item);
+                                break;
+                            case ACTION_RESTORE:
+                                mPresenter.removeItem(item, 0);
+                                item.setIsComplete(!item.getIsComplete());
+                                mPresenter.addItem(item);
+                                break;
+                        }
+                    }
+                })
                 .show();
     }
+
 
     @Override
     public void removeItem(Item item, int position) {
         mAdapter.remove(position, item.getIsComplete());
+        setInfoTextVisibility();
     }
 
     @Override
     public void updateItem(Item item, int position) {
         mAdapter.updateItemAt(position, item);
+        setInfoTextVisibility();
     }
 
     @Override

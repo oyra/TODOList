@@ -4,16 +4,13 @@ package com.oyra.todolist.data;
 
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
-
 /**
  * Entity mapped to table "ITEM".
  */
 public class Item {
 
     private Long id;
-    /**
-     * Not-null value.
-     */
+    /** Not-null value. */
     private String text;
     private boolean isComplete;
     private long timestamp;
@@ -43,16 +40,12 @@ public class Item {
         this.id = id;
     }
 
-    /**
-     * Not-null value.
-     */
+    /** Not-null value. */
     public String getText() {
         return text;
     }
 
-    /**
-     * Not-null value; ensure this value is available before it is saved to the database.
-     */
+    /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setText(String text) {
         this.text = text;
     }

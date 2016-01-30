@@ -9,4 +9,5 @@
     <string name="removed">Removed</string>
     <string name="archive">ARCHIVE</string>
     <string name="active">ACTIVE</string>
+    <string name="undo">UNDO</string>
 </resources>
