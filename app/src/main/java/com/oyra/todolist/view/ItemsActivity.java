@@ -89,6 +89,7 @@ public class ItemsActivity extends AppCompatActivity implements IItemsView, IAct
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //switch lists
                 mAdapter.switchLists();
+                setInfoTextVisibility();
                 setAddButtonVisibility();
                 setTitle();
             }
